@@ -1,0 +1,234 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-weight: 300;
+    font-family: sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    z-index: 999;
+}
+
+.barier{
+    background-color: white;
+    z-index: 1000;
+    width: 500px;
+    height: 98vh;
+    position: absolute;
+}
+
+.container {
+    position: relative;
+    border: 1px solid black;
+    align-content: center;
+    display: flex;
+    background-color: #22364c;
+    flex-direction: column;
+    width: 370px;
+    height: 100vh;
+}
+
+  h2{
+    text-align: center;
+    color: white;
+  }
+
+   p{
+    color: white;
+    font-size: 20px;
+   }
+
+   span.frac {
+    display: inline-block;
+    text-align: center;
+  }
+
+  span.frac > sup {
+    display: block;
+    border-bottom: 1px solid;
+    font: inherit;
+  }
+
+  td{
+    font-size: 25px;
+  }
+  span.frac > span {
+    display: none;
+  }
+
+  span.frac > sub {
+    display: block;
+
+  }
+ 
+  .math{
+      margin-top: 15px;
+      text-align: center;
+  }
+
+.navbar {
+    z-index: -1;
+    top: -196px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 65px;
+    background-color: #333333;
+}
+
+.main {
+    z-index: -1;
+    position: absolute;
+    top: 55px;
+    width: inherit;
+    height: 595px;
+}
+
+.header-title {
+    user-select: none;
+    margin-top: 20px;
+    text-align: center;
+    color: white;
+}
+
+.main-content {
+    overflow: hidden;
+    display: inline-flex;
+    margin: 5px;
+    padding: 5px;
+}
+
+input:focus {
+    outline: none;
+}
+
+::-webkit-scrollbar{
+    display: none;
+}
+.logo{
+    position: relative;
+    padding: 0;
+}
+
+.course-credits{
+    width: 50px !important;
+}
+
+svg{
+    position: absolute;
+    top: 7px;
+    padding: 15px;
+    cursor: pointer;
+}
+
+.content-item input {
+    margin-bottom: 10px;
+    font-size: 15px;
+    padding: 5px;
+    height: 35px ;
+    width: 100px;
+    display: inline-flex;
+}
+
+.browser {
+    height: 35px !important;
+    width: 50px !important;
+}
+
+.content-item button {
+    width: 150px;
+    margin: 10px;
+    height: 50px;
+
+}
+
+#result {
+    position: absolute;
+    top: 90%;
+    width: 150px;
+    height: 50px;
+    left: 30%;
+}
+
+.table{
+    display: block;
+}
+
+.table td {
+    max-width: 50px;
+    min-width: 60px;
+    border: 1px solid black;
+    font-stretch: expanded;
+    overflow: auto;
+
+}
+
+.pop-up-save {
+    align-items: center;
+    color: white;
+    background-color: #3d6fa5;
+    border-radius: 20px;
+    position: absolute;
+    animation-name: bounding;
+    transition: ease-in;
+    animation-duration: 2000ms;
+    left: 50px;
+    top: 200px;
+    display: flex;
+    flex-direction: column;
+    width: 280px;
+    height: 280px;
+}
+
+.pop-up-save span {
+    cursor: pointer;
+    position: relative;
+    left: 113px;
+    font-size: 25px;
+}
+
+@keyframes bounding {
+    from {
+        top: -250px;
+    }
+
+    to {
+        top: 200px;
+    }
+}
+
+.pop-up-save button {
+    width: 100px;
+    height: 50px;
+}
+
+.pop-up-save h3,p {
+    margin: 5px;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 370px;
+    height: 100vh;
+    background-color: black;
+    opacity: 0.5;
+}
+
+.closed-button{
+    height: 40px !important;
+    width: 40px !important;
+    border-radius: 0 !important;
+}
+
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .barier{
+        display: none;
+    }
+    .container{
+        margin-left: 0;
+        height: 100vh;
+    }
+  }
+
