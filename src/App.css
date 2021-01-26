@@ -22,7 +22,7 @@
     display: flex;
     background-color: #22364c;
     flex-direction: column;
-    width: 370px;
+    width: 386px;
     height: 100vh;
 }
 
@@ -208,7 +208,7 @@ svg{
     position: absolute;
     top: 0;
     left: 0;
-    width: 370px;
+    width: 386px;
     height: 100vh;
     background-color: black;
     opacity: 0.5;
@@ -222,7 +222,6 @@ svg{
 
 
 @media only screen and (max-width: 768px) {
-    /* For mobile phones: */
     .barier{
         display: none;
     }
