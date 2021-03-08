@@ -40,7 +40,7 @@ export default class App extends React.Component {
     }
   }
 
-getResult(){
+  getResult() {
     const name = document.getElementById("valueName").value;
     let list = this.state.listResult;
     if (name.length !== 0) {
