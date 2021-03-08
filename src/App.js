@@ -11,6 +11,7 @@ import {
 } from "react-router-dom";
 import Guide from "./components/guide";
 import ResultPage from "./components/results";
+import Helmet from "react-helmet";
 
 export default class App extends React.Component {
 
@@ -139,6 +140,10 @@ export default class App extends React.Component {
             <Navbar />
             <Switch>
               <Route exact path="/">
+                <Helmet>
+                  <title>GPA Calculator App</title>
+                  <meta name="description" content="Web site use for calculate GPA  point in University or collage." />
+                </Helmet>
                 <div className="main">
                   <div className="main-content">\
                     <Item
@@ -157,9 +162,18 @@ export default class App extends React.Component {
                 </div>
               </Route>
               <Route path="/guide">
+                <Helmet>
+                  <title>
+                    GPA Calculator App | Guides
+                  </title>
+                  <meta name="description" content="How GPA Calculator guides ?" />
+                </Helmet>
                 <Guide />
               </Route>
               <Route path="/result">
+                <Helmet>
+                  <title>GPA Calculator App | Results</title>
+                </Helmet>
                 <ResultPage name={this.state.name}
                   dataList={this.state.listResult}
                   gpaResult={this.state.result}
