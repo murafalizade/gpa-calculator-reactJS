@@ -103,7 +103,7 @@ class Menu extends React.Component {
           <nav style={{ "zIndex": "-1" }}>
             <Link to="/" onClick={this.toggleMenu}><li >Home</li></Link>
             <Link to="/guide" onClick={this.toggleMenu}><li >Guides</li></Link>
-            <Link to="/result" onClick={this.toggleMenu}><li>Results</li></Link>
+            <Link to="/Profile" onClick={this.toggleMenu}><li>Profile</li></Link>
             
             <ul style={{ marginTop: "300px", display: "flex" }}>
               <li>

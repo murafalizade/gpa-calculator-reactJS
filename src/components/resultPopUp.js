@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 
 class ResultPopUp extends Component {
-
     render() {
         const { gpaResult, closePopUp, withGrade } = this.props;
         return (
+            document.cookie?
             <div style={this.props.popUp ? { display: "block" } : { display: "none" }}>
                 <div onClick={this.props.closePopUp} id="darken" className="overlay"></div>
                 <div className="pop-up-save">
@@ -17,6 +17,8 @@ class ResultPopUp extends Component {
                     <Link to="/result" className="btn btn-secondary m-1 rounded btn-lg" onClick={() => { this.props.getValue(); closePopUp(); }}>Save</Link>
                 </div>
             </div>
+            :
+            null
         );
     }
 }

@@ -12,6 +12,11 @@ import {
 import Guide from "./components/guide";
 import ResultPage from "./components/results";
 import Helmet from "react-helmet";
+import LoginPage from "./components/loginpage";
+import UserProfile from "./components/userProfile";
+import jwt from "jwt-decode";
+import axios from "axios";
+
 
 export default class App extends React.Component {
 
@@ -19,13 +24,16 @@ export default class App extends React.Component {
     popUp: false,
     result: 0,
     gpaResult: 0,
+    loading:true,
     listResult: []
   }
 
   clearList = (id) => {
-    let list = this.state.listResult;
-    let ipgradelist = list.filter(i => i.id !== id);
-    this.setState({ listResult: ipgradelist });
+    let token = jwt(document.cookie.slice(6));
+    axios.delete(`http://localhost:8080/${token.id}/result/${id}`).then(res => this.setState({ listResult: res.data}))
+    .catch(err=>console.log(err));
+    window.location.reload();
+    this.setState({loading: true})
   }
 
   clearAllList = () => {
@@ -43,7 +51,7 @@ export default class App extends React.Component {
 
   getResult() {
     const name = document.getElementById("valueName").value;
-    let list = this.state.listResult;
+    let token = jwt(document.cookie.slice(6));
     if (name.length !== 0) {
       const keyValue = uuid.v4();
       let gpa = this.state.result;
@@ -55,8 +63,9 @@ export default class App extends React.Component {
         "gpa1": gpa,
         "gpa2": gpaGrade
       };
-      list.push(data);
-      this.setState({ listResult: list });
+      axios.post(`http://localhost:8080/users/${token.id}`,data).then(res=>console.log(res.data)).catch(err=>console.log(err));
+      // list.push(data);
+      // this.setState({ listResult: list });
     }
     else {
       alert("You must write a name for save. If you willn't write anything to input , you don't save your results. Please write save name .");
@@ -117,18 +126,13 @@ export default class App extends React.Component {
     this.setState({ result: total });
   }
 
-  componentDidUpdate() {
-    const simpleData = JSON.stringify(this.state.listResult);
-    localStorage.setItem("name", simpleData);
-  }
-
   componentDidMount() {
-    let newData = localStorage.getItem("name");
-    newData = JSON.parse(newData);
-    if (newData === null) {
-      newData = [];
-    }
-    this.setState({ listResult: newData });
+    if(document.cookie){
+      let token = jwt(document.cookie.slice(6));
+      console.log(token);
+      axios.get(`http://localhost:8080/users/${token.id}`).then(res => this.setState({ listResult: res.data }))
+      .catch(err=>console.log(err));
+    }    
   }
 
   render() {
@@ -178,7 +182,15 @@ export default class App extends React.Component {
                   dataList={this.state.listResult}
                   gpaResult={this.state.result}
                   deletedItems={this.clearList}
-                  clearAllList={this.clearAllList} />
+                  clearAllList={this.clearAllList}
+                  load={this.state.loading}
+                  />
+              </Route>
+              <Route path="/login">
+                <LoginPage />
+              </Route>
+              <Route path="/Profile">
+                <UserProfile />
               </Route>
             </Switch>
             <ResultPopUp

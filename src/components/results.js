@@ -12,7 +12,8 @@ class ResultPage extends Component {
   render() {
     return (
       <div style={{ "zIndex": "-1" }}>
-        <table className="table mt-4 table-dark table-hover" style={{ "maxHeight": "350px", "overflow": "auto" }}>
+        {this.props.load === true ? ( 
+        <><table className="table mt-4 table-dark table-hover" style={{ "maxHeight": "350px", "overflow": "auto" }}>
           <thead>
             <tr>
               <th>Name</th>
@@ -34,7 +35,11 @@ class ResultPage extends Component {
             }
           </tbody>
         </table>
-        <button onClick={this.clear.bind(this)} className="btn btn-danger btn-block">Clear All</button>
+        <button onClick={this.clear.bind(this)} className="btn btn-danger btn-block">Clear All</button></>)
+        :<h2>
+          Please wait dowlanding your data . . .
+        </h2>
+  }
       </div>
     );
   }

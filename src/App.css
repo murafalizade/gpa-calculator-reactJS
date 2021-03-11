@@ -234,4 +234,69 @@ svg{
         width:425px;
     }   
   }
-
+.login{
+    z-index: -1;
+    display:flex;
+    justify-content:center;
+    flex-direction: column;
+    align-items: center;
+    margin-top:125px;
+}
+.login input{
+    padding:15px;
+    width: 250px;
+    height:50px;
+    margin-bottom: 15px;
+    border-radius:25px;
+    border:1px solid #3d6fa5;
+}
+#show{
+    position:absolute;
+    left:255px;
+    padding-top:55px;
+    cursor:pointer;
+}
+#show:hover{
+    color:#3d6fa5;
+}
+.sumbbuton{
+    width:260px;
+    height:50px;
+    border-radius: 55px;
+}
+.pfor{
+    margin:0;
+    font-size:15px;
+    margin-bottom:15px;
+    text-align:center;
+}
+ .profile{
+    z-index: -1;
+} 
+.userProfile{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+.profileFoto{
+    width:100px;
+    height:100px;
+    background-color:blanchedalmond;
+    border:1px solid ;
+}
+.profileButton{
+    margin-bottom:15px;
+    width:150px;
+    height:50px;
+    color:white;
+    background-color: transparent;
+}
+.profileButton:hover{
+    color:#3d6fa5;
+}
+.profilename{
+    margin-left: 15px;
+    font-size: 55px;
+}
