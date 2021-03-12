@@ -1,6 +1,8 @@
 import React from "react";
 import { css } from "@emotion/css";
 import { Link } from 'react-router-dom';
+import jwt from "jwt-decode";
+
 
 const easeSlow = css`
   transition: all 450ms ease-in-out;
@@ -78,15 +80,19 @@ const menuOverlay = css`
     }
   }
 `;
+var token = "";
+if (document.cookie !== "") {
+  token = jwt(document.cookie.slice(6));
+}
 
 class Menu extends React.Component {
   state = {
-    isMenuOpen: false
+    isMenuOpen: false,
+    auth:token
   };
 
   toggleMenu = () =>
     this.setState(({ isMenuOpen }) => ({ isMenuOpen: !isMenuOpen }));
-
   render() {
     const { isMenuOpen } = this.state;
     return (
@@ -103,8 +109,8 @@ class Menu extends React.Component {
           <nav style={{ "zIndex": "-1" }}>
             <Link to="/" onClick={this.toggleMenu}><li >Home</li></Link>
             <Link to="/guide" onClick={this.toggleMenu}><li >Guides</li></Link>
-            <Link to="/Profile" onClick={this.toggleMenu}><li>Profile</li></Link>
-            
+            <Link to={this.state.auth!==""?`/Profile/${token.id}`:"/login"} onClick={this.toggleMenu}><li>Profile</li></Link>
+
             <ul style={{ marginTop: "300px", display: "flex" }}>
               <li>
                 <a href="https://www.facebook.com/people/Murad-Aliyev/100005770751769" rel="noopener noreferrer" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" className="logo" fill="#EB4C54" width="24" height="24" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" /></svg></a>

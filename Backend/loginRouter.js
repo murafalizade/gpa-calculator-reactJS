@@ -12,7 +12,6 @@ Router.get("/", async (req, res) => {
 
 Router.post("/", async (req, res) => {
     const { username, password } = req.body;
-    console.log(password);
     const oldUser = await User.findOne({ username: username });
     if (oldUser !== null) {
         const match = await bcrypt.compareSync(password, oldUser.password);
@@ -31,5 +30,13 @@ Router.post("/", async (req, res) => {
         res.send(token);
         }
     })
+
+Router.put("/:id",async(req,res)=>{
+    const user = await  User.findOne({_id:req.params.id});
+    res.send(user);
+})
+
+
+
 
 module.exports = Router;

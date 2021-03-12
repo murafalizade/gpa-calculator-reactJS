@@ -16,7 +16,14 @@ import LoginPage from "./components/loginpage";
 import UserProfile from "./components/userProfile";
 import jwt from "jwt-decode";
 import axios from "axios";
+import NotFount from "./components/error-page/404found"; 
+import NotUser from "./components/error-page/404user"; 
 
+var token = "";
+if (document.cookie !== "") {
+  token = jwt(document.cookie.slice(6));
+  console.log(document.cookie);
+}
 
 export default class App extends React.Component {
 
@@ -24,16 +31,16 @@ export default class App extends React.Component {
     popUp: false,
     result: 0,
     gpaResult: 0,
-    loading:true,
-    listResult: []
+    loading: true,
+    listResult: [],
+    auth: token
   }
 
   clearList = (id) => {
-    let token = jwt(document.cookie.slice(6));
-    axios.delete(`http://localhost:8080/${token.id}/result/${id}`).then(res => this.setState({ listResult: res.data}))
-    .catch(err=>console.log(err));
+    axios.delete(`http://localhost:8080/api/users/${token.id}/result/${id}`).then(res => console.log({ msg: "success", data: res.data }))
+      .catch(err => console.log(err));
     window.location.reload();
-    this.setState({loading: true})
+    this.setState({ loading: true })
   }
 
   clearAllList = () => {
@@ -51,7 +58,6 @@ export default class App extends React.Component {
 
   getResult() {
     const name = document.getElementById("valueName").value;
-    let token = jwt(document.cookie.slice(6));
     if (name.length !== 0) {
       const keyValue = uuid.v4();
       let gpa = this.state.result;
@@ -63,9 +69,7 @@ export default class App extends React.Component {
         "gpa1": gpa,
         "gpa2": gpaGrade
       };
-      axios.post(`http://localhost:8080/users/${token.id}`,data).then(res=>console.log(res.data)).catch(err=>console.log(err));
-      // list.push(data);
-      // this.setState({ listResult: list });
+      axios.post(`http://localhost:8080/api/users/${token.id}`, data).then(res => console.log(res.data)).catch(err => console.log(err));
     }
     else {
       alert("You must write a name for save. If you willn't write anything to input , you don't save your results. Please write save name .");
@@ -127,12 +131,10 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    if(document.cookie){
-      let token = jwt(document.cookie.slice(6));
-      console.log(token);
-      axios.get(`http://localhost:8080/users/${token.id}`).then(res => this.setState({ listResult: res.data }))
-      .catch(err=>console.log(err));
-    }    
+    if (document.cookie) {
+      axios.get(`http://localhost:8080/api/users/${token.id}`).then(res => this.setState({ listResult: res.data }))
+        .catch(err => console.log(err));
+    }
   }
 
   render() {
@@ -174,24 +176,30 @@ export default class App extends React.Component {
                 </Helmet>
                 <Guide />
               </Route>
-              <Route path="/result">
+              <Route path={`/result/${token.id}`}>
                 <Helmet>
                   <title>GPA Calculator App | Results</title>
                 </Helmet>
                 <ResultPage name={this.state.name}
-                  dataList={this.state.listResult}
                   gpaResult={this.state.result}
                   deletedItems={this.clearList}
                   clearAllList={this.clearAllList}
                   load={this.state.loading}
-                  />
+                />
               </Route>
               <Route path="/login">
                 <LoginPage />
               </Route>
-              <Route path="/Profile">
+              <Route path={`/Profile/${token.id}`}>
                 <UserProfile />
               </Route>
+              <Route path="/Profile/*">
+                <NotUser />
+              </Route>
+              <Route path="/*">
+                <NotFount />
+              </Route>
+              
             </Switch>
             <ResultPopUp
               closePopUp={this.closePopUp}

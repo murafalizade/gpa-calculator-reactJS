@@ -10,7 +10,7 @@ const LoginPage = () => {
     const [showing,setShowing] = useState("SHOW");
 
     const formSubmit = async (user) =>{
-     let token = await axios.post(`http://localhost:8080/login`,user);
+     let token = await axios.post(`http://localhost:8080/api/login`,user);
         document.cookie = `TOKEN=${token.data};max-age=604800;`;
         window.location.reload();
     }
@@ -26,7 +26,7 @@ const LoginPage = () => {
                 type={showing==="HIDDEN"?"text":"password"} />
             <span onClick={()=>setShowing(showing==="SHOW"?"HIDDEN":"SHOW")} id="show">{user.password?showing:""}</span>
             <button onClick={()=>formSubmit(user)} className="btn sumbbuton btn-outline-primary">Login</button>
-            </div> : <Redirect to="/Profile" />
+            </div> : <Redirect to="/" />
     )
 }
 export default LoginPage;

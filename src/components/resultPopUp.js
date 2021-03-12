@@ -1,24 +1,27 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
 
 class ResultPopUp extends Component {
     render() {
         const { gpaResult, closePopUp, withGrade } = this.props;
         return (
-            document.cookie?
+            
             <div style={this.props.popUp ? { display: "block" } : { display: "none" }}>
                 <div onClick={this.props.closePopUp} id="darken" className="overlay"></div>
                 <div className="pop-up-save">
                     <span onClick={closePopUp}>x</span>
+                    {document.cookie ? ( 
+                    <>
                     <h2>Result</h2>
                     <p >Gpa:{gpaResult}%</p>
                     <p >Gpa:{withGrade}</p>
                     <input id="valueName" placeholder="Save Name" className="form-control p-2 m-1 w-75" />
-                    <Link to="/result" className="btn btn-secondary m-1 rounded btn-lg" onClick={() => { this.props.getValue(); closePopUp(); }}>Save</Link>
-                </div>
+                    <button  className="btn btn-secondary m-1 rounded btn-lg" onClick={() => { this.props.getValue(); closePopUp(); }}>Save</button>
+                </>):<>
+                <p className="text-white mt-6">Please <a className="text-white" href="/login">sign in</a></p>
+                </>
+                    }
+                   </div>
             </div>
-            :
-            null
         );
     }
 }

@@ -3,7 +3,6 @@ const Router = express.Router();
 const User = require("./userModels");
 
 Router.get("/:id",async (req, res) => {
-    console.log(req.params.id);
     const user = await User.findOne({ _id: req.params.id });
     res.send(user.result);
 });
@@ -11,7 +10,6 @@ Router.get("/:id",async (req, res) => {
 Router.post(`/:id`, async (req, res) => {
     let user = await User.findOne({ _id: req.params.id });
     const result = req.body;
-    console.log(user,result);
     user.result.push(result);
     await user.save();
     res.send({msg:"succes"});
