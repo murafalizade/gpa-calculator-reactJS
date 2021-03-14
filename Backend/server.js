@@ -15,10 +15,9 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Credentials', true);
   next();
 })
+
 app.use("/api/login", LoginRouter);
 app.use("/api/users", ResultRouter);
-
-
 
 
 app.use(favicon('build/favicon.ico'));

@@ -4,11 +4,7 @@ import Navbar from "./components/navbar"
 import Item from "./components/item";
 import ResultPopUp from "./components/resultPopUp";
 import { v4 as uuid } from "uuid";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Guide from "./components/guide";
 import ResultPage from "./components/results";
 import Helmet from "react-helmet";
@@ -16,13 +12,12 @@ import LoginPage from "./components/loginpage";
 import UserProfile from "./components/userProfile";
 import jwt from "jwt-decode";
 import axios from "axios";
-import NotFount from "./components/error-page/404found"; 
-import NotUser from "./components/error-page/404user"; 
+import NotFount from "./components/error-page/404found";
+import NotUser from "./components/error-page/404user";
 
 var token = "";
 if (document.cookie !== "") {
   token = jwt(document.cookie.slice(6));
-  console.log(document.cookie);
 }
 
 export default class App extends React.Component {
@@ -44,7 +39,9 @@ export default class App extends React.Component {
   }
 
   clearAllList = () => {
-    this.setState({ listResult: [] });
+    axios.delete(`http://localhost:8080/api/users/${token.id}/result/all`).then(res => console.log({ msg: "success", data: res.data }))
+      .catch(err => console.log(err));
+    window.location.reload();
   }
 
   closePopUp = () => {
@@ -176,7 +173,7 @@ export default class App extends React.Component {
                 </Helmet>
                 <Guide />
               </Route>
-              <Route path={`/result/${token.id}`}>
+              <Route path={`/result/:userId`}>
                 <Helmet>
                   <title>GPA Calculator App | Results</title>
                 </Helmet>
@@ -199,7 +196,7 @@ export default class App extends React.Component {
               <Route path="/*">
                 <NotFount />
               </Route>
-              
+
             </Switch>
             <ResultPopUp
               closePopUp={this.closePopUp}

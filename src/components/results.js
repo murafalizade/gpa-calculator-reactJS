@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 const ResultPage = (props) => {
+ const [cookies] = useCookies('TOKEN');
   const [results, setResults] = useState([]);
   const url = useLocation();
   function deleted(id) {
@@ -12,10 +14,8 @@ const ResultPage = (props) => {
   function clear() {
     props.clearAllList();
   }
-
   useEffect(() => {
     let token = url.pathname.slice(8);
-    console.log(token);
     axios.get(`http://localhost:8080/api/users/${token}`).then(res => setResults(res.data))
       .catch(err => console.log(err));
   }, [url])
@@ -38,8 +38,8 @@ const ResultPage = (props) => {
                   <td >{i.name}</td>
                   <td >{i.gpa1}%</td>
                   <td>{i.gpa2}</td>
-                  <td><button className="btn btn-danger  btn-small"
-                    onClick={() => deleted(i.id)}>X</button></td>
+                  {cookies? (<td><button className="btn btn-danger  btn-small"
+                    onClick={() => deleted(i.id)}>X</button></td>):null} 
                 </tr>))
             }
           </tbody>

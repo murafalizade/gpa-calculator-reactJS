@@ -18,14 +18,19 @@ Router.post(`/:id`, async (req, res) => {
 
 Router.delete(`/:id/result/:prid`, async (req, res) => {
     let user = await User.findOne({ _id: req.params.id });
-    const id = req.params.prid;
     let filtering = user.result;
-    const newResult = filtering.filter((value)=>{
-        return value.id !== id;
-    });
-    user.result = newResult;
-    await user.save();
-    res.send(user.result);
+    const id = req.params.prid;
+    if (id !== "all") {
+        const newResult = filtering.filter((value) => {
+            return value.id !== id;
+        });
+        user.result = newResult;}
+    else{
+        user.result=[];
+    }
+        await user.save();
+        res.send(user.result);
+
 });
 
 module.exports = Router;

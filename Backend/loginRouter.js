@@ -3,12 +3,11 @@ const Router = express.Router();
 const User = require("./userModels");
 const bcrypt = require("bcrypt");
 const getToken = require("./token");
-const jwt = require("jsonwebtoken");
 
 Router.get("/", async (req, res) => {
     const users = await User.find({});
     res.send(users);
-})
+});
 
 Router.post("/", async (req, res) => {
     const { username, password } = req.body;
@@ -29,13 +28,17 @@ Router.post("/", async (req, res) => {
         const token = getToken(devUser);
         res.send(token);
         }
-    })
+    });
 
 Router.put("/:id",async(req,res)=>{
     const user = await  User.findOne({_id:req.params.id});
     res.send(user);
+});
+Router.delete("/:id",async (req,res)=>{
+    const deletinUser = await User.deleteOne({_id:req.params.id});
+    res.send({msg:"succes delete"});
+    console.log("User was deleted . . .");
 })
-
 
 
 

@@ -1,7 +1,7 @@
 import React from "react";
 const NotFount=()=>{
     return(
-        <div>
+        <div style={{ zIndex: "-1" }}>
             <h1 className="text-white text-center m-4">
                 404
             </h1>
