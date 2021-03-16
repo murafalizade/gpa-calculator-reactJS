@@ -25,12 +25,14 @@ const UserProfile = () => {
     const logOut =()=>{
         removeCookie('TOKEN');
         // document.cookie = "TOKEN=;expires=Sun,20 Mar 1979 12:00:00 UTC;"
+        window.location.reload();
         console.log("log out . . .");
     }
 
     const deleteUser=(id)=>{
         axios.delete(`http://localhost:8080/api/login/${id}`).then(res=>console.log("succesfully deleting operation")).catch(err=>console.log(err))
         removeCookie("TOKEN");
+        window.location.reload();
     }
     
     return (

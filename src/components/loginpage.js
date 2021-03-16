@@ -11,7 +11,7 @@ const LoginPage = () => {
 
     const formSubmit = async (user) =>{
      let token = await axios.post(`http://localhost:8080/api/login`,user);
-        document.cookie = `TOKEN=${token.data};max-age=100000;`;
+        document.cookie = `TOKEN=${token.data};max-age=60*60*24;`;
         window.location.reload();
     }
 
