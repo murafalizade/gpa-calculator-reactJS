@@ -45,7 +45,7 @@ const UserProfile = () => {
                                 <p className="mb-3 profilename">{user.username}</p>
                             </div>
                             <a className="btn mt-2 profileButton" href={`/result/${user._id}`}>MyResults</a>
-                            <button className="btn profileButton" onClick={() => copyToClipboard(`http://localhost:5000/result/${user._id}`)} >Share Your Results</button>
+                            <button className="btn profileButton" onClick={() => copyToClipboard(`https://gpa-calculatorapp.herokuapp.com/result/${user._id}`)} >Share Your Results</button>
                             <button className="btn profileButton" onClick={()=>deleteUser(user._id)} >Delete Your Profile</button>
                             <button className="btn profileButton" onClick={() => logOut() }>Log Out</button>
                         </div>)

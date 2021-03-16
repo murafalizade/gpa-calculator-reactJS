@@ -10,9 +10,14 @@ const LoginPage = () => {
     const [showing,setShowing] = useState("SHOW");
 
     const formSubmit = async (user) =>{
-     let token = await axios.post(`http://localhost:8080/api/login`,user);
-        document.cookie = `TOKEN=${token.data};max-age=60*60*24;`;
-        window.location.reload();
+        if(user.username!="" && user.password!=""){
+            let token = await axios.post(`http://localhost:8080/api/login`, user);
+            document.cookie = `TOKEN=${token.data};max-age=60*60*24;`;
+            window.location.reload();
+        }
+        else{
+            alert("Please enter your username or password");
+        }
     }
 
     return (
