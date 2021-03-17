@@ -11,7 +11,7 @@ const LoginPage = () => {
 
     const formSubmit = async (user) =>{
         if(user.username!="" && user.password!=""){
-            let token = await axios.post(`http://localhost:8080/api/login`, user);
+            let token = await axios.post(`https://gpa-calculatorapp.herokuapp.com/api/login`, user);
             document.cookie = `TOKEN=${token.data};max-age=60*60*24;`;
             window.location.reload();
         }

@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "2b96de3a761e5a3c8649";
+/******/ 	var hotCurrentHash = "b3582006110dcd8de7cc";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -39690,7 +39690,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_13__);
 /* harmony import */ var _components_error_page_404found__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/error-page/404found */ "./src/components/error-page/404found.js");
-/* harmony import */ var _components_error_page_404user__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/error-page/404user */ "./src/components/error-page/404user.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -39712,7 +39711,6 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
 
 
 
@@ -39760,7 +39758,7 @@ var App = /*#__PURE__*/function (_React$Component) {
     };
 
     _this.clearList = function (id) {
-      axios__WEBPACK_IMPORTED_MODULE_13___default.a.delete("http://localhost:8080/api/users/".concat(token.id, "/result/").concat(id)).then(function (res) {
+      axios__WEBPACK_IMPORTED_MODULE_13___default.a.delete("https://gpa-calculatorapp.herokuapp.com/api/users/".concat(token.id, "/result/").concat(id)).then(function (res) {
         return console.log({
           msg: "success",
           data: res.data
@@ -39776,7 +39774,7 @@ var App = /*#__PURE__*/function (_React$Component) {
     };
 
     _this.clearAllList = function () {
-      axios__WEBPACK_IMPORTED_MODULE_13___default.a.delete("http://localhost:8080/api/users/".concat(token.id, "/result/all")).then(function (res) {
+      axios__WEBPACK_IMPORTED_MODULE_13___default.a.delete("https://gpa-calculatorapp.herokuapp.com/api/users/".concat(token.id, "/result/all")).then(function (res) {
         return console.log({
           msg: "success",
           data: res.data
@@ -39882,7 +39880,7 @@ var App = /*#__PURE__*/function (_React$Component) {
           "gpa1": gpa,
           "gpa2": gpaGrade
         };
-        axios__WEBPACK_IMPORTED_MODULE_13___default.a.post("http://localhost:8080/api/users/".concat(token.id), data).then(function (res) {
+        axios__WEBPACK_IMPORTED_MODULE_13___default.a.post("https://gpa-calculatorapp.herokuapp.com/api/users/".concat(token.id), data).then(function (res) {
           return console.log(res.data);
         }).catch(function (err) {
           return console.log(err);
@@ -39899,7 +39897,7 @@ var App = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       if (document.cookie) {
-        axios__WEBPACK_IMPORTED_MODULE_13___default.a.get("http://localhost:8080/api/users/".concat(token.id)).then(function (res) {
+        axios__WEBPACK_IMPORTED_MODULE_13___default.a.get("https://gpa-calculatorapp.herokuapp.com/api/users/".concat(token.id)).then(function (res) {
           return _this2.setState({
             listResult: res.data
           });
@@ -39961,8 +39959,6 @@ var App = /*#__PURE__*/function (_React$Component) {
         path: "/Profile/".concat(token.id)
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_userProfile__WEBPACK_IMPORTED_MODULE_11__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["Route"], {
         path: "/Profile/*"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_error_page_404user__WEBPACK_IMPORTED_MODULE_15__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["Route"], {
-        path: "/*"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_error_page_404found__WEBPACK_IMPORTED_MODULE_14__["default"], null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_resultPopUp__WEBPACK_IMPORTED_MODULE_4__["default"], {
         closePopUp: this.closePopUp,
         withGrade: this.state.gpaResult,
@@ -40006,35 +40002,6 @@ var NotFount = function NotFount() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (NotFount);
-
-/***/ }),
-
-/***/ "./src/components/error-page/404user.js":
-/*!**********************************************!*\
-  !*** ./src/components/error-page/404user.js ***!
-  \**********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-
-
-var NotUser = function NotUser() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    style: {
-      zIndex: "-1"
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-    className: "text-white text-center m-4"
-  }, "Not found as user , please  ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "/login"
-  }, "sign in"), " for this profile"));
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (NotUser);
 
 /***/ }),
 
@@ -40345,15 +40312,25 @@ var LoginPage = function LoginPage() {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _context.next = 2;
-              return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("http://localhost:8080/api/login", user);
+              if (!(user.username != "" && user.password != "")) {
+                _context.next = 8;
+                break;
+              }
 
-            case 2:
+              _context.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("https://gpa-calculatorapp.herokuapp.com/api/login", user);
+
+            case 3:
               token = _context.sent;
-              document.cookie = "TOKEN=".concat(token.data, ";max-age=100000;");
+              document.cookie = "TOKEN=".concat(token.data, ";max-age=60*60*24;");
               window.location.reload();
+              _context.next = 9;
+              break;
 
-            case 5:
+            case 8:
+              alert("Please enter your username or password");
+
+            case 9:
             case "end":
               return _context.stop();
           }
@@ -40789,7 +40766,7 @@ var ResultPage = function ResultPage(props) {
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     var token = url.pathname.slice(8);
-    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("http://localhost:8080/api/users/".concat(token)).then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("https://gpa-calculatorapp.herokuapp.com/api/users/".concat(token)).then(function (res) {
       return setResults(res.data);
     }).catch(function (err) {
       return console.log(err);
@@ -40866,6 +40843,7 @@ var UserProfile = function UserProfile() {
       setCookie = _useCookies2[1],
       removeCookie = _useCookies2[2];
 
+  console.log(cookies, setCookie);
   var url = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["useLocation"])();
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({}),
@@ -40875,7 +40853,7 @@ var UserProfile = function UserProfile() {
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     var id = url.pathname.slice(9);
-    axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("http://localhost:8080/api/login/".concat(id)).then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("https://gpa-calculatorapp.herokuapp.com/api/login/".concat(id)).then(function (res) {
       return setUser(res.data);
     }).catch(function (err) {
       return console.log(err);
@@ -40895,16 +40873,18 @@ var UserProfile = function UserProfile() {
   var logOut = function logOut() {
     removeCookie('TOKEN'); // document.cookie = "TOKEN=;expires=Sun,20 Mar 1979 12:00:00 UTC;"
 
+    window.location.reload();
     console.log("log out . . .");
   };
 
   var deleteUser = function deleteUser(id) {
-    axios__WEBPACK_IMPORTED_MODULE_1___default.a.delete("http://localhost:8080/api/login/".concat(id)).then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.delete("https://gpa-calculatorapp.herokuapp.com/api/login/".concat(id)).then(function (res) {
       return console.log("succesfully deleting operation");
     }).catch(function (err) {
       return console.log(err);
     });
     removeCookie("TOKEN");
+    window.location.reload();
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -40921,7 +40901,7 @@ var UserProfile = function UserProfile() {
   }, "MyResults"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     className: "btn profileButton",
     onClick: function onClick() {
-      return copyToClipboard("http://localhost:5000/result/".concat(user._id));
+      return copyToClipboard("https://gpa-calculatorapp.herokuapp.com/result/".concat(user._id));
     }
   }, "Share Your Results"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     className: "btn profileButton",

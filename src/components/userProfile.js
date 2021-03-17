@@ -5,11 +5,12 @@ import { useCookies} from "react-cookie";
 
 const UserProfile = () => {
     const [cookies,setCookie,removeCookie] = useCookies('TOKEN');
+    console.log(cookies,setCookie);
     const url = useLocation();
     const [user, setUser] = useState({});
     useEffect(() => {
         const id = url.pathname.slice(9);
-        axios.put(`http://localhost:8080/api/login/${id}`).then(res => setUser(res.data)).catch(err => console.log(err));
+        axios.put(`https://gpa-calculatorapp.herokuapp.com/api/login/${id}`).then(res => setUser(res.data)).catch(err => console.log(err));
     }, [url.pathname]);
 
     const copyToClipboard = str => {
@@ -30,7 +31,7 @@ const UserProfile = () => {
     }
 
     const deleteUser=(id)=>{
-        axios.delete(`http://localhost:8080/api/login/${id}`).then(res=>console.log("succesfully deleting operation")).catch(err=>console.log(err))
+        axios.delete(`https://gpa-calculatorapp.herokuapp.com/api/login/${id}`).then(res=>console.log("succesfully deleting operation")).catch(err=>console.log(err))
         removeCookie("TOKEN");
         window.location.reload();
     }
