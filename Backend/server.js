@@ -30,16 +30,16 @@ app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, '../Client/build', 'index.html'));
 });
 
-app.use((req, res) => {
-  res.status(404).json({
-    mesaj: 'Rota Bulunamadı'
-  });
-});
-app.use((err, req, res) => {
-  res.status(err.status || 500).json({
-    mesaj: 'hata mesajı',
-    hata: {}
-  });
-});
+// app.use((req, res) => {
+//   res.status(404).json({
+//     mesaj: 'Rota Bulunamadı'
+//   });
+// });
+// app.use((err, req, res) => {
+//   res.status(err.status || 500).json({
+//     mesaj: 'hata mesajı',
+//     hata: {}
+//   });
+//});
 
 app.listen(port);
