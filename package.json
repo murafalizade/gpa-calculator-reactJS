@@ -8,9 +8,6 @@
     "start": "cd Backend  && npm start",
     "heroku-postbuild": "cd Client  && npm run build"
   },
-  "engines": {
-    "node": "13.13.0"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC"
