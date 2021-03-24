@@ -16,7 +16,7 @@ const ResultPage = (props) => {
   }
   useEffect(() => {
     let token = url.pathname.slice(8);
-    axios.get(`https://gpa-calculatorapp.herokuapp.com/api/users/${token}`).then(res => setResults(res.data))
+    axios.get(`/api/users/${token}`).then(res => setResults(res.data))
       .catch(err => console.log(err));
   }, [url])
   return (

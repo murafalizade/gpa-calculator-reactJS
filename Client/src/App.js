@@ -31,14 +31,14 @@ export default class App extends React.Component {
   }
 
   clearList = (id) => {
-    axios.delete(`https://gpa-calculatorapp.herokuapp.com/api/users/${token.id}/result/${id}`).then(res => console.log({ msg: "success", data: res.data }))
+    axios.delete(`/api/users/${token.id}/result/${id}`).then(res => console.log({ msg: "success", data: res.data }))
       .catch(err => console.log(err));
     window.location.reload();
     this.setState({ loading: true })
   }
 
   clearAllList = () => {
-    axios.delete(`https://gpa-calculatorapp.herokuapp.com/api/users/${token.id}/result/all`).then(res => console.log({ msg: "success", data: res.data }))
+    axios.delete(`/api/users/${token.id}/result/all`).then(res => console.log({ msg: "success", data: res.data }))
       .catch(err => console.log(err));
     window.location.reload();
   }
@@ -65,7 +65,7 @@ export default class App extends React.Component {
         "gpa1": gpa,
         "gpa2": gpaGrade
       };
-      axios.post(`https://gpa-calculatorapp.herokuapp.com/api/users/${token.id}`, data).then(res => console.log(res.data)).catch(err => console.log(err));
+      axios.post(`/api/users/${token.id}`, data).then(res => console.log(res.data)).catch(err => console.log(err));
     }
     else {
       alert("You must write a name for save. If you willn't write anything to input , you don't save your results. Please write save name .");
@@ -128,7 +128,7 @@ export default class App extends React.Component {
 
   componentDidMount() {
     if (document.cookie) {
-      axios.get(`https://gpa-calculatorapp.herokuapp.com/api/users/${token.id}`).then(res => this.setState({ listResult: res.data }))
+      axios.get(`/api/users/${token.id}`).then(res => this.setState({ listResult: res.data }))
         .catch(err => console.log(err));
     }
   }

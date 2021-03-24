@@ -10,7 +10,7 @@ const UserProfile = () => {
     const [user, setUser] = useState({});
     useEffect(() => {
         const id = url.pathname.slice(9);
-        axios.put(`https://gpa-calculatorapp.herokuapp.com/api/login/${id}`).then(res => setUser(res.data)).catch(err => console.log(err));
+        axios.put(`/api/login/${id}`).then(res => setUser(res.data)).catch(err => console.log(err));
     }, [url.pathname]);
 
     const copyToClipboard = str => {
@@ -31,7 +31,7 @@ const UserProfile = () => {
     }
 
     const deleteUser=(id)=>{
-        axios.delete(`https://gpa-calculatorapp.herokuapp.com/api/login/${id}`).then(res=>console.log("succesfully deleting operation")).catch(err=>console.log(err))
+        axios.delete(`/api/login/${id}`).then(res=>console.log("succesfully deleting operation")).catch(err=>console.log(err))
         removeCookie("TOKEN");
         window.location.reload();
     }
@@ -46,7 +46,7 @@ const UserProfile = () => {
                                 <p className="mb-3 profilename">{user.username}</p>
                             </div>
                             <a className="btn mt-2 profileButton" href={`/result/${user._id}`}>MyResults</a>
-                            <button className="btn profileButton" onClick={() => copyToClipboard(`https://gpa-calculatorapp.herokuapp.com/result/${user._id}`)} >Share Your Results</button>
+                            <button className="btn profileButton" onClick={() => copyToClipboard(`/result/${user._id}`)} >Share Your Results</button>
                             <button className="btn profileButton" onClick={()=>deleteUser(user._id)} >Delete Your Profile</button>
                             <button className="btn profileButton" onClick={() => logOut() }>Log Out</button>
                         </div>)

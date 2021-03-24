@@ -22,7 +22,7 @@ module.exports = {
         filename: 'bundle.js',
     },
     devServer: {
-        contentBase: './dist',
+        contentBase: './Client/dist',
         open: true,
         hot: true,
     },
