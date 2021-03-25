@@ -9,20 +9,20 @@ const bodyParser = require("body-parser");
 
 app.use(bodyParser.json());
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://gpa-calculatorapp.herokuapp.com');
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
   res.setHeader('Access-Control-Allow-Credentials', true);
   next();
 })
 
-app.use("/api/login", LoginRouter);
-app.use("/api/users", ResultRouter);
-
-
 app.use(favicon('../Client/build/favicon.ico'));
 app.use(express.static(__dirname));
 app.use(express.static(path.join(__dirname, '../Client/build')));
+
+app.use("/api/login", LoginRouter);
+app.use("/api/users", ResultRouter);
+
 app.get('/ping', function (req, res) {
   return res.send('pong');
 });
@@ -42,4 +42,4 @@ app.get('/*', function (req, res) {
 //   });
 //});
 
-app.listen(port);
+app.listen(port,()=>{console.log('http://localhost:8080')});
